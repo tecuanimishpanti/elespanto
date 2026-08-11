@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root{
+  --bg:#f3eada;
+  --bg-2:#eae0c7;
+  --bg-3:#e1d2ac;
+  --text:#1e1912;
+  --text-muted:rgba(30,25,18,0.62);
+  --text-faint:rgba(30,25,18,0.44);
+  --border:rgba(30,25,18,0.14);
+  --border-strong:rgba(30,25,18,0.28);
+  --on-accent:#f8f2e6; /* texto/íconos sobre bloques de color saturado (cortina, ramas, avance, puertas) */
+
+  --font-display:'Fraunces', serif;
+  --font-body:'Inter', sans-serif;
+  --font-mono:'IBM Plex Mono', monospace;
+
+  --periferia:#e5326b;
+  --periferia-2:#ff7fa8;
+  --monte:#47642d;
+  --monte-2:#8fae5a;
+  --monte-cafe:#6b4a2b; /* acento café, solo para El Monte, combinado con los verdes */
+  --umbral:#b8791e;
+  --umbral-2:#f0b84d;
+  --cruce:#9c2b1f;
+  --cruce-2:#d9634f;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit; text-decoration:none;}
+img{max-width:100%; display:block;}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+}
+
+/* ---------- shared chrome ---------- */
+.topbar{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:20px 40px;
+  border-bottom:0.5px solid var(--border);
+}
+.wordmark{
+  font-family:var(--font-display);
+  font-size:19px; font-weight:500;
+  letter-spacing:0.01em;
+}
+.topbar-right{display:flex; align-items:center; gap:22px;}
+.sound-toggle{
+  display:flex; align-items:center; gap:8px;
+  background:none; border:0.5px solid var(--border-strong);
+  color:var(--text-muted); font-family:var(--font-mono); font-size:11px;
+  padding:7px 12px; border-radius:20px; cursor:pointer;
+  transition:border-color 0.2s ease, color 0.2s ease;
+}
+.sound-toggle:hover{ color:var(--text); border-color:var(--text-muted); }
+.sound-toggle.on{ color:var(--text); border-color:var(--text); }
+.nav-territories{display:flex; gap:18px; font-family:var(--font-mono); font-size:11px; text-transform:lowercase;}
+.nav-territories a{color:var(--text-faint); transition:color 0.2s ease;}
+.nav-territories a:hover{color:var(--text);}
+.nav-territories a.active{color:var(--text); border-bottom:1px solid currentColor; padding-bottom:2px;}
+
+footer{
+  padding:60px 40px 40px;
+  border-top:0.5px solid var(--border);
+  margin-top:80px;
+  text-align:center;
+}
+.manifesto-slot{
+  font-family:var(--font-display); font-style:italic; font-size:15px;
+  color:var(--text-faint); max-width:480px; margin:0 auto 18px;
+}
+.footer-meta{font-family:var(--font-mono); font-size:11px; color:var(--text-faint);}
+
+/* ---------- icons ---------- */
+.icn{width:16px; height:16px; stroke:currentColor; fill:none; stroke-width:1.4; vertical-align:-3px;}
+.format-tag{display:flex; align-items:center; gap:6px; font-family:var(--font-mono); font-size:10.5px; color:var(--text-muted); text-transform:lowercase;}
+
+/* photo placeholder */
+.ph{
+  background:var(--bg-3);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--text-faint); font-family:var(--font-mono); font-size:11px;
+  text-align:center; padding:12px;
+}
+
+/* ---------- home: masthead ---------- */
+.masthead{ padding:70px 40px 40px; text-align:center; }
+.masthead h1{
+  font-family:var(--font-display); font-weight:600; font-size:56px;
+  margin:0 0 14px; letter-spacing:-0.01em;
+}
+.masthead .tagline{ font-family:var(--font-display); font-style:italic; font-size:18px; margin:0 0 10px; }
+.masthead .desc{ font-size:13.5px; color:var(--text-muted); max-width:440px; margin:0 auto; }
+
+/* ---------- home: featured ---------- */
+.featured{ padding:20px 40px 10px; }
+.eyebrow{ font-family:var(--font-mono); font-size:10.5px; color:var(--text-faint); text-transform:lowercase; letter-spacing:0.04em; margin:0 0 12px;}
+.featured-card{ border-radius:6px; overflow:hidden; }
+.featured-card .ph{ height:340px; }
+.featured-meta{ display:flex; align-items:center; justify-content:space-between; padding:16px 4px 0; }
+.featured-meta h2{ font-family:var(--font-display); font-weight:500; font-size:22px; margin:0; }
+.featured-meta .terr{ font-family:var(--font-mono); font-size:11px; color:var(--text-muted); }
+
+/* ---------- home: doors ---------- */
+.doors{ padding:50px 40px 20px; }
+.doors-grid{
+  display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:18px;
+}
+.door{
+  position:relative; border-radius:8px; overflow:hidden; height:260px;
+  border:0.5px solid var(--border); cursor:pointer;
+  transition:transform 0.35s ease, border-color 0.35s ease;
+}
+.door:hover{ transform:translateY(-4px); border-color:var(--border-strong); }
+.door .ph{ position:absolute; inset:0; }
+.door-motif{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0.85; transition:transform 0.5s ease; }
+.door:hover .door-motif{ transform:scale(1.08); }
+.door-label{
+  position:absolute; left:0; right:0; bottom:0; padding:16px;
+  background:linear-gradient(to top, rgba(0,0,0,0.45), transparent);
+  color:var(--on-accent);
+}
+.door-label .name{ font-family:var(--font-display); font-size:19px; font-weight:500; }
+.door-label .sense{ font-family:var(--font-mono); font-size:10px; opacity:0.8; text-transform:lowercase; }
+
+.door.periferia{ background:color-mix(in srgb, var(--periferia) 16%, var(--bg-2)); }
+.door.monte{ background:color-mix(in srgb, var(--monte) 16%, var(--bg-2)); }
+.door.umbral{ background:color-mix(in srgb, var(--umbral) 16%, var(--bg-2)); }
+.door.cruce{ background:color-mix(in srgb, var(--cruce) 16%, var(--bg-2)); }
+
+/* ================= TERRITORY PAGES ================= */
+
+/* entrance stage, shared mechanics, themed by territory */
+.entrance{ position:relative; height:70vh; min-height:420px; overflow:hidden; }
+.entrance .ph{ position:absolute; inset:0; }
+.entrance-title{
+  position:absolute; left:0; right:0; bottom:0; padding:36px 44px;
+  z-index:3; color:var(--on-accent);
+  text-shadow:0 2px 18px rgba(0,0,0,0.35);
+}
+.entrance-title .eyebrow{ color:rgba(248,242,230,0.8); }
+.entrance-title h1{ font-family:var(--font-display); font-weight:600; font-size:38px; margin:0; max-width:600px; }
+.entrance-hint{
+  position:absolute; bottom:16px; right:20px; z-index:4;
+  font-family:var(--font-mono); font-size:10px; color:var(--text-faint);
+}
+
+/* Umbral: curtain */
+.curtain-panel{ position:absolute; top:0; width:50%; height:100%; z-index:2; transition:transform 0.9s cubic-bezier(.65,0,.35,1); display:flex; align-items:center; justify-content:center; color:var(--on-accent); }
+.curtain-panel.l{ left:0; background:var(--umbral); }
+.curtain-panel.r{ right:0; background:var(--umbral); }
+.entrance.opened .curtain-panel.l{ transform:translateX(-100%); }
+.entrance.opened .curtain-panel.r{ transform:translateX(100%); }
+
+/* Monte: branches */
+.branch-layer{ position:absolute; inset:0; z-index:2; background:linear-gradient(160deg, var(--monte-cafe), var(--monte)); color:var(--on-accent); display:flex; align-items:center; justify-content:center; transition:opacity 0.8s ease, transform 0.8s ease; }
+.entrance.opened .branch-layer{ opacity:0; transform:scale(1.25); }
+
+/* Periferia: advance */
+.advance-layer{ position:absolute; inset:0; z-index:2; background:var(--periferia); color:var(--on-accent); display:flex; align-items:center; justify-content:center; transition:transform 0.8s ease, opacity 0.8s ease; }
+.entrance.opened .advance-layer{ transform:scale(3); opacity:0; }
+
+/* Cruce: plaque */
+.plaque-layer{ position:absolute; inset:0; z-index:2; display:flex; align-items:center; justify-content:center; background:var(--bg-2); }
+.plaque{
+  width:60%; max-width:420px; padding:36px 24px; text-align:center;
+  border:1px solid var(--cruce-2); color:var(--text);
+  transition:transform 0.9s cubic-bezier(.65,0,.35,1), opacity 0.9s ease;
+}
+.plaque p{ font-family:var(--font-display); font-style:italic; font-size:15px; margin:10px 0 0; }
+.entrance.opened .plaque-layer{ }
+.entrance.opened .plaque{ transform:scale(6); opacity:0; }
+
+/* ---------- territory content zones ---------- */
+.territory-intro{ padding:36px 44px 10px; max-width:560px; }
+.territory-intro p{ font-family:var(--font-display); font-style:italic; color:var(--text-muted); font-size:15px; margin:0; }
+
+.territory-feed{ padding:30px 44px 20px; }
+
+/* Umbral layout: ceremonious, hung paintings */
+.feed-umbral{ display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:46px; justify-items:center; }
+.feed-umbral .card{ width:100%; max-width:320px; text-align:center; }
+.feed-umbral .frame{ border:10px solid var(--bg-3); box-shadow:0 0 0 1px var(--border-strong); }
+.feed-umbral .frame .ph{ height:280px; }
+.feed-umbral .cap{ margin-top:14px; }
+.feed-umbral .cap h3{ font-family:var(--font-display); font-weight:500; font-size:17px; margin:0 0 4px; }
+
+/* Periferia layout: chaos with purpose */
+.feed-periferia{ display:grid; grid-template-columns:repeat(6,1fr); gap:10px; }
+.feed-periferia .card{ position:relative; border-radius:4px; overflow:hidden; border:1px solid var(--periferia-2); }
+.feed-periferia .card:nth-child(1){ grid-column:span 4; grid-row:span 2; transform:rotate(-0.6deg); }
+.feed-periferia .card:nth-child(2){ grid-column:span 2; transform:rotate(1.2deg); margin-top:18px; }
+.feed-periferia .card:nth-child(3){ grid-column:span 2; transform:rotate(-1deg); margin-top:-8px; }
+.feed-periferia .card:nth-child(4){ grid-column:span 3; transform:rotate(0.8deg); }
+.feed-periferia .card:nth-child(5){ grid-column:span 3; transform:rotate(-0.4deg); margin-top:10px; }
+.feed-periferia .card .ph{ height:180px; }
+.feed-periferia .cap{ padding:10px 12px; background:var(--bg-2); }
+.feed-periferia .cap h3{ font-family:var(--font-body); font-weight:600; font-size:13px; margin:0 0 4px; }
+
+/* Monte layout: ordered, organic */
+.feed-monte{ display:grid; grid-template-columns:repeat(auto-fit, minmax(230px,1fr)); gap:24px; }
+.feed-monte .card{ border-radius:14px; overflow:hidden; border:0.5px solid var(--border); }
+.feed-monte .card .ph{ height:200px; }
+.feed-monte .cap{ padding:14px 16px; background:var(--bg-2); }
+.feed-monte .cap h3{ font-family:var(--font-display); font-weight:500; font-size:15px; margin:0 0 4px; }
+
+/* Cruce layout: monument, one at a time */
+.feed-cruce{ display:flex; flex-direction:column; gap:60px; max-width:640px; margin:0 auto; }
+.feed-cruce .card{ text-align:center; padding-bottom:40px; border-bottom:1px solid var(--border); }
+.feed-cruce .card:last-child{ border-bottom:none; }
+.feed-cruce .card .ph{ height:260px; margin-bottom:18px; border:1px solid var(--cruce-2); }
+.feed-cruce .cap h3{ font-family:var(--font-display); font-weight:500; font-size:20px; margin:0 0 6px; }
+.feed-cruce .cap p{ font-family:var(--font-mono); font-size:11px; color:var(--text-faint); margin:0; }
+
+@media (max-width:640px){
+  .masthead h1{ font-size:38px; }
+  .feed-periferia{ grid-template-columns:repeat(2,1fr); }
+  .feed-periferia .card{ grid-column:span 2 !important; transform:none !important; margin:0 !important; }
+  .topbar{ padding:16px 20px; flex-wrap:wrap; gap:10px; }
+  .nav-territories{ order:3; width:100%; justify-content:space-between; }
+}
