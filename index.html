@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>El Espanto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --negro:     #0D0A07;
+    --hueso:     #EDE0C8;
+    --oxido:     #7A3B1E;
+    --oro:       #C4861A;
+    --rojo:      #8B1A1A;
+    --verde:     #4A9B6F;
+    --verde-monte: #5DB87A;
+    --mono:  'IBM Plex Mono', monospace;
+    --serif: 'Playfair Display', Georgia, serif;
+  }
+
+  html, body {
+    height: 100%;
+    background: var(--negro);
+    color: var(--hueso);
+    font-family: var(--serif);
+    overflow: hidden; /* la portada NO hace scroll — es una sola pantalla */
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  /* grano global */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.035;
+  }
+
+  /* ══════════════════════════════
+     HERO — ÚNICA PANTALLA, OCUPA TODO EL ESPACIO
+  ══════════════════════════════ */
+  #pantalla-hero {
+    position: relative;
+    height: 100vh;
+    height: 100svh;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  /* pila de imágenes en crossfade, cada una con su "respiro"
+     (zoom lento e imperceptible) que nunca se detiene */
+  #capa-fondo {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .fondo-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    opacity: 0;
+    transition: opacity 1.3s ease-in-out;
+    animation: respirar 9s ease-in-out infinite alternate;
+  }
+  .fondo-img.activa { opacity: 1; z-index: 1; }
+
+  /* ───────────────────────────────────────────────
+     ESPACIO PARA TUS FOTOGRAFÍAS DE PORTADA
+     Estas son las 4 fotos que giran a pantalla completa.
+     Recomendado: horizontales, mínimo 1920px de ancho.
+     ─────────────────────────────────────────────── */
+  #img-periferia { background-image: url("FOTOS/periferia-hero.jpg"); animation-delay: 0s; }
+  #img-monte     { background-image: url("FOTOS/monte-hero.jpg");     animation-delay: -2.3s; }
+  #img-cruce     { background-image: url("FOTOS/cruce-hero.jpg");     animation-delay: -4.6s; }
+  #img-umbral    { background-image: url("FOTOS/umbral-hero.jpg");    animation-delay: -6.9s; }
+
+  @keyframes respirar {
+    0%   { transform: scale(1)     translate(0, 0); }
+    50%  { transform: scale(1.1)  translate(-0.8%, -0.5%); }
+    100% { transform: scale(1.2) translate(0.6%, 0.8%); }
+  }
+
+  #capa-velo {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background:
+      linear-gradient(to bottom, rgba(13,10,7,0.55) 0%, rgba(13,10,7,0.25) 32%, rgba(13,10,7,0.35) 68%, rgba(13,10,7,0.85) 100%);
+  }
+
+  #hero-contenido {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 5rem 2rem;
+  }
+
+  .hero-grieta {
+    opacity: 0;
+    animation: emerge 2s ease forwards 0.3s;
+    margin-bottom: 2.2rem;
+  }
+  .hero-grieta svg { filter: drop-shadow(0 0 18px rgba(180,210,255,0.18)); }
+
+  h1.logotipo {
+    font-family: var(--serif);
+    font-weight: 900;
+    font-size: clamp(3.4rem, 11vw, 9rem);
+    line-height: 0.88;
+    color: var(--hueso);
+    letter-spacing: -0.02em;
+    opacity: 0;
+    animation: emerge 1.6s ease forwards 1s;
+    margin-bottom: 1.6rem;
+    text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+  }
+
+  #hero-intro {
+    position: relative;
+    z-index: 3;
+    max-width: 46ch;
+    opacity: 0;
+    animation: fade-in 1.4s ease forwards 1.9s;
+  }
+
+  .tagline-wrap {
+    height: 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.9rem;
+  }
+  .tagline {
+    position: absolute;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1rem, 2.1vw, 1.4rem);
+    color: var(--oro);
+    opacity: 0;
+    transition: opacity 1s ease;
+    white-space: nowrap;
+  }
+  .tagline.visible { opacity: 1; }
+
+  .hero-descripcion {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    line-height: 1.7;
+    color: rgba(237,224,200,0.68);
+  }
+
+  #boton-entrar {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    background: none;
+    border: 1px solid rgba(237,224,200,0.35);
+    color: var(--hueso);
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    padding: 0.9rem 2.2rem;
+    cursor: pointer;
+    opacity: 0;
+    animation: fade-in-borde 0.6s ease forwards 2.8s;
+    transition: background 0.3s ease, border-color 0.3s ease, letter-spacing 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    gap: 0.02em;
+  }
+  #boton-entrar:hover {
+    background: rgba(237,224,200,0.08);
+    border-color: rgba(237,224,200,0.7);
+    letter-spacing: 0.34em;
+  }
+  #boton-entrar:hover .letra { animation-play-state: paused; opacity: 1; }
+  #boton-entrar:focus-visible { outline: 2px solid var(--oro); outline-offset: 3px; }
+
+  /* cada letra de "Entrar" se enciende por separado, como una mecha,
+     y una vez encendida el conjunto queda con un parpadeo de vela —
+     no de letrero de neón: irregular, casi imperceptible, sobrio */
+  .letra {
+    display: inline-block;
+    opacity: 0;
+    animation:
+      encender 0.45s ease forwards,
+      parpadeo 5.5s ease-in-out infinite;
+    animation-delay: var(--retraso), calc(var(--retraso) + 3.2s);
+  }
+
+  @keyframes encender {
+    from { opacity: 0; transform: translateY(3px); text-shadow: 0 0 0 rgba(196,134,26,0); }
+    60%  { opacity: 1; text-shadow: 0 0 9px rgba(196,134,26,0.55); }
+    to   { opacity: 1; transform: translateY(0); text-shadow: 0 0 0 rgba(196,134,26,0); }
+  }
+
+  @keyframes parpadeo {
+    0%, 100% { opacity: 1; }
+    4%  { opacity: 0.82; }
+    7%  { opacity: 1; }
+    38% { opacity: 1; }
+    41% { opacity: 0.88; }
+    44% { opacity: 1; }
+    72% { opacity: 0.9; }
+    75% { opacity: 1; }
+  }
+
+  @keyframes emerge {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes fade-in-borde {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @media (max-width: 720px) {
+    .hero-descripcion { font-size: 0.68rem; }
+    #boton-entrar { bottom: 2.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<section id="pantalla-hero">
+
+  <div id="capa-fondo">
+    <div class="fondo-img activa" id="img-periferia"></div>
+    <div class="fondo-img" id="img-monte"></div>
+    <div class="fondo-img" id="img-cruce"></div>
+    <div class="fondo-img" id="img-umbral"></div>
+  </div>
+
+  <div id="capa-velo"></div>
+
+  <div id="hero-contenido">
+    <div class="hero-grieta">
+      <svg viewBox="0 0 60 120" width="40" height="80" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <radialGradient id="luz-hero" cx="50%" cy="50%" r="55%">
+            <stop offset="0%"   stop-color="#c8e0ff" stop-opacity="1"/>
+            <stop offset="55%"  stop-color="#C4861A" stop-opacity="0.45"/>
+            <stop offset="100%" stop-color="#C4861A" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="glow-hero">
+            <feGaussianBlur stdDeviation="2.5" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <path d="M30,2 L24,28 L35,52 L20,76 L28,100 L30,118" fill="none" stroke="#EDE0C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M30,2 L24,28 L35,52 L20,76 L28,100 L30,118" fill="none" stroke="url(#luz-hero)" stroke-width="6" stroke-linecap="round" filter="url(#glow-hero)" opacity="0.9"/>
+        <circle cx="24" cy="28"  r="1.4" fill="#b8d4ff" opacity="0.8"/>
+        <circle cx="35" cy="52"  r="1.4" fill="#b8d4ff" opacity="0.8"/>
+        <circle cx="20" cy="76"  r="1.4" fill="#b8d4ff" opacity="0.8"/>
+      </svg>
+    </div>
+
+    <h1 class="logotipo">EL ESPANTO</h1>
+
+    <div id="hero-intro">
+      <div class="tagline-wrap" aria-live="polite">
+        <span class="tagline" id="t0">Los territorios también hablan.</span>
+        <span class="tagline" id="t1">Los márgenes tienen algo que decir.</span>
+        <span class="tagline" id="t2">Hay historias que todavía respiran.</span>
+      </div>
+      <p class="hero-descripcion">Historias audiovisuales que exploran los cruces entre el territorio, las personas, los rituales y los altares cotidianos.</p>
+    </div>
+  </div>
+
+  <!-- ENTRAR lleva a una página nueva: universos.html
+       el texto se arma letra por letra vía JS (ver script abajo) -->
+  <a href="universos.html" id="boton-entrar" aria-label="Entrar a El Espanto"></a>
+</section>
+
+<script>
+  // ── crossfade de fondo (efecto "Recollection") ──
+  (function () {
+    var imgs = document.querySelectorAll('.fondo-img');
+    var actual = 0;
+    setInterval(function () {
+      imgs[actual].classList.remove('activa');
+      actual = (actual + 1) % imgs.length;
+      imgs[actual].classList.add('activa');
+    }, 3600);
+  })();
+
+  // ── tagline rotativo ──
+  (function () {
+    var frases = document.querySelectorAll('.tagline');
+    var actual = 0;
+    frases[0].classList.add('visible');
+    setInterval(function () {
+      frases[actual].classList.remove('visible');
+      actual = (actual + 1) % frases.length;
+      frases[actual].classList.add('visible');
+    }, 4200);
+  })();
+
+  // ── Enter también funciona con la tecla Enter del teclado ──
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') { window.location.href = 'universos.html'; }
+  });
+
+  // ── arma "Entrar" letra por letra, cada una con su propio retraso ──
+  (function () {
+    var texto = 'Entrar';
+    var boton = document.getElementById('boton-entrar');
+    texto.split('').forEach(function (letra, i) {
+      var span = document.createElement('span');
+      span.className = 'letra';
+      span.style.setProperty('--retraso', (i * 0.09) + 's');
+      span.textContent = letra;
+      boton.appendChild(span);
+    });
+  })();
+</script>
+
+</body>
+</html>
