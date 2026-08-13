@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Espanto</title>
+<meta name="description" content="El Espanto — un territorio digital con cuatro puertas.">
+
+<!-- Tipografías: Monoton para el efecto de tubo de neón,
+     Cormorant Garamond para el resto de la voz del sitio. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Monoton&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/aparicion.css">
+</head>
+<body class="aparicion">
+
+<a class="skip-link" href="#contenido">Saltar a Entrar</a>
+
+<div class="escena" id="contenido">
+
+  <!-- ============================================================
+       APARICIONES
+       Cada .aparicion es un placeholder de silueta ambigua.
+       Para reemplazar por fotografía real:
+         1. Coloca la imagen en images/aparicion/
+         2. En .aparicion__forma, sustituye el fondo negro por:
+              background-image: url("images/aparicion/tu-foto.jpg");
+              background-size: cover;
+              mix-blend-mode: screen;  (suele integrarse bien sobre negro)
+       ============================================================ -->
+  <div class="aparicion aparicion--mano" aria-hidden="true">
+    <div class="aparicion__forma"></div>
+  </div>
+  <div class="aparicion aparicion--rostro" aria-hidden="true">
+    <div class="aparicion__forma"></div>
+  </div>
+  <div class="aparicion aparicion--sombrero" aria-hidden="true">
+    <div class="aparicion__forma"></div>
+  </div>
+  <div class="aparicion aparicion--canasto" aria-hidden="true">
+    <div class="aparicion__forma"></div>
+  </div>
+  <div class="aparicion aparicion--tacuacin" aria-hidden="true">
+    <div class="aparicion__forma"></div>
+  </div>
+  <div class="aparicion aparicion--grupo" aria-hidden="true">
+    <div class="aparicion__forma"></div>
+  </div>
+  <div class="aparicion--farol" aria-hidden="true"></div>
+
+  <!-- TÍTULO -->
+  <div class="titulo-wrap">
+    <h1 class="neon">
+      <span class="neon__linea">
+        <span class="neon__letra">E</span><span class="neon__letra">L</span><span class="espacio"> </span>
+      </span>
+      <span class="neon__linea">
+        <span class="neon__letra">E</span><span class="neon__letra">S</span><span class="neon__letra">P</span><span class="neon__letra">A</span><span class="neon__letra">N</span><span class="neon__letra">T</span><span class="neon__letra">O</span>
+      </span>
+    </h1>
+
+    <a class="entrar" href="universos.html">Entrar</a>
+  </div>
+
+  <button class="saltar" type="button">Saltar animación</button>
+  <div style="position:fixed;bottom:0.5rem;left:0.5rem;z-index:999;color:#0f0;background:#000;font-family:monospace;font-size:12px;padding:4px 8px;border:1px solid #0f0;">BUILD-004</div>
+</div>
+
+<script src="js/aparicion.js"></script>
+</body>
+</html>
