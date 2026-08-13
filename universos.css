@@ -1,0 +1,247 @@
+/* ============================================================
+   EL ESPANTO — universos.css
+   Página 2: LAS CUATRO PUERTAS
+   Marco de transición entre la oscuridad de la Página 1
+   y los cuatro universos, cada uno con identidad propia.
+   ============================================================ */
+
+body.universos {
+  background: #150f0a;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+/* Marca discreta arriba a la izquierda — vuelve a Página 1 */
+.universos__marca {
+  position: absolute;
+  top: 1.6rem;
+  left: 1.8rem;
+  z-index: 20;
+  font-family: 'Monoton', cursive;
+  font-size: 1.05rem;
+  color: rgba(255, 130, 70, 0.55);
+  letter-spacing: 0.05em;
+}
+.universos__marca:hover { color: rgba(255, 160, 100, 0.85); }
+
+.puertas {
+  flex: 1;
+  display: flex;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+.puerta {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  transition: flex-grow 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  isolation: isolate;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: puertaEntra 900ms ease forwards;
+}
+.puerta:nth-child(1) { animation-delay: 80ms; }
+.puerta:nth-child(2) { animation-delay: 220ms; }
+.puerta:nth-child(3) { animation-delay: 360ms; }
+.puerta:nth-child(4) { animation-delay: 500ms; }
+
+@keyframes puertaEntra {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.puertas:hover .puerta { flex-grow: 1; }
+.puerta:hover,
+.puerta:focus-visible {
+  flex-grow: 2.4;
+}
+
+/* Fondo genérico de cada puerta — placeholder de textura/foto.
+   Reemplaza el "background" de cada variante con una imagen real:
+     background-image: url("images/<universo>/portada.jpg");
+     background-size: cover; background-position: center;         */
+.puerta__fondo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  transition: transform 900ms ease;
+}
+.puerta:hover .puerta__fondo,
+.puerta:focus-visible .puerta__fondo { transform: scale(1.04); }
+
+.puerta__velo {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.puerta__contenido {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 2.2rem 1.1rem;
+  text-align: center;
+}
+
+.puerta__nombre {
+  display: block;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  margin: 0 auto;
+  transition: writing-mode 300ms, font-size 300ms;
+  white-space: nowrap;
+}
+
+.puerta:hover .puerta__nombre,
+.puerta:focus-visible .puerta__nombre,
+.puerta__nombre.--horizontal {
+  writing-mode: horizontal-tb;
+}
+
+.puerta__susurro {
+  display: block;
+  margin-top: 0.6em;
+  font-style: italic;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 350ms ease, transform 350ms ease;
+}
+.puerta:hover .puerta__susurro,
+.puerta:focus-visible .puerta__susurro { opacity: 0.85; transform: translateY(0); }
+
+/* ------------------------------------------------------------
+   LA PERIFERIA — calle, neón, mercado, ruido visual
+   ------------------------------------------------------------ */
+.puerta--periferia {
+  background: #201f1d;
+}
+.puerta--periferia .puerta__fondo {
+  background:
+    repeating-linear-gradient(115deg, rgba(255,255,255,0.035) 0 2px, transparent 2px 26px),
+    linear-gradient(200deg, #2c2a26 0%, #17191b 55%, #0e1012 100%);
+}
+.puerta--periferia .puerta__velo {
+  background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 55%, transparent 75%);
+  box-shadow: inset 0 0 0 1px rgba(255, 60, 170, 0.03);
+}
+.puerta--periferia .puerta__nombre {
+  font-family: 'Anton', 'Arial Narrow', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: clamp(1.2rem, 2.6vw, 2.1rem);
+  color: #f4f0e6;
+  text-shadow: 0 0 14px rgba(255, 60, 170, 0.55), 0 0 28px rgba(60, 220, 255, 0.25);
+}
+.puerta--periferia .puerta__susurro {
+  font-family: 'Anton', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.68rem;
+  color: #7fe9ff;
+}
+
+/* ------------------------------------------------------------
+   EL MONTE — verde, húmedo, territorio con una amenaza
+   ------------------------------------------------------------ */
+.puerta--monte {
+  background: #16211a;
+}
+.puerta--monte .puerta__fondo {
+  background:
+    radial-gradient(ellipse 140% 70% at 30% 110%, rgba(10, 8, 6, 0.65), transparent 60%),
+    linear-gradient(160deg, #2c4a34 0%, #1b3325 45%, #0f1f16 100%);
+}
+.puerta--monte .puerta__fondo {
+  position: absolute;
+}
+.puerta--monte .puerta__fondo::after {
+  /* la mancha/sombra que amenaza el paisaje */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 85% 15%, rgba(0,0,0,0.55), transparent 45%);
+  mix-blend-mode: multiply;
+}
+.puerta--monte .puerta__velo {
+  background: linear-gradient(0deg, rgba(6,10,7,0.8) 0%, rgba(6,10,7,0.05) 60%, transparent 78%);
+}
+.puerta--monte .puerta__nombre {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(1.15rem, 2.4vw, 2rem);
+  color: #dcead9;
+}
+.puerta--monte .puerta__susurro {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 0.85rem;
+  color: #9fc7a8;
+}
+
+/* ------------------------------------------------------------
+   EL UMBRAL — luminoso, contemplativo, catedral digital
+   ------------------------------------------------------------ */
+.puerta--umbral {
+  background: #efe8d8;
+}
+.puerta--umbral .puerta__fondo {
+  background: linear-gradient(180deg, #fbf7ee 0%, #efe6d2 55%, #e4d7bd 100%);
+}
+.puerta--umbral .puerta__velo {
+  background: linear-gradient(0deg, rgba(60,45,20,0.18) 0%, rgba(60,45,20,0.02) 55%, transparent 78%);
+}
+.puerta--umbral .puerta__nombre {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  font-size: clamp(1.15rem, 2.4vw, 2rem);
+  color: #4a3c22;
+}
+.puerta--umbral .puerta__susurro {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #a3843f;
+}
+
+/* ------------------------------------------------------------
+   EL CRUCE — archivo y monumento
+   ------------------------------------------------------------ */
+.puerta--cruce {
+  background: #2a231a;
+}
+.puerta--cruce .puerta__fondo {
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 3px),
+    linear-gradient(160deg, #4a3c28 0%, #2c2317 60%, #19140d 100%);
+}
+.puerta--cruce .puerta__velo {
+  background: linear-gradient(0deg, rgba(10,8,5,0.78) 0%, rgba(10,8,5,0.05) 55%, transparent 78%);
+}
+.puerta--cruce .puerta__nombre {
+  font-family: 'Special Elite', 'Courier New', monospace;
+  font-size: clamp(1rem, 2.1vw, 1.7rem);
+  color: #e8dcc2;
+}
+.puerta--cruce .puerta__susurro {
+  font-family: 'Special Elite', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: #b79b6b;
+}
+
+/* ------------------------------------------------------------
+   Responsive — móvil: apiladas, pero visualmente distintas
+   ------------------------------------------------------------ */
+@media (max-width: 780px) {
+  .puertas { flex-direction: column; }
+  .puerta { min-height: 25vh; flex-grow: 1 !important; align-items: center; }
+  .puerta__nombre { writing-mode: horizontal-tb !important; }
+  .puerta__susurro { opacity: 0.85 !important; transform: none !important; }
+  .puerta__contenido { padding: 1.2rem; }
+}
