@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Monte — El Espanto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --papel:        #f6f3ec;
+    --papel-crudo:  #efe9dc;
+    --tinta:        #2b2620;
+    --tinta-suave:  #55503f;
+    --gris-med:     #948d7a;
+
+    --verde:        #4a6b4a;
+    --verde-oscuro: #33502f;
+    --tierra:       #8a6a42;
+
+    --periferia:    #6f9a2c;
+    --monte:        #4a6b4a;
+    --cruce:        #8f2020;
+    --umbral:       #a3822f;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--papel);
+    color: var(--tinta);
+    font-family: 'Space Mono', monospace;
+    min-height: 100vh;
+  }
+
+  .grano {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    mix-blend-mode: multiply;
+  }
+
+  .marca {
+    position: fixed;
+    top: 1.6rem; left: 2rem;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    text-decoration: none;
+  }
+  .marca svg { display: block; }
+  .marca-texto {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--tinta-suave);
+  }
+
+  .nav-territorios {
+    position: fixed;
+    top: 1.9rem; right: 2rem;
+    z-index: 100;
+    display: flex;
+    gap: 1.8rem;
+  }
+  .nav-territorios a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--gris-med);
+    transition: color 0.4s ease;
+  }
+  .nav-territorios a:hover { color: var(--tinta); }
+  .nav-territorios a.activo { color: var(--verde); }
+
+  @media (max-width: 720px) {
+    .nav-territorios { display: none; }
+  }
+
+  /* ══════════════════════════════
+     HERO — claro, editorial, sereno.
+     Inspirado en Emergence Magazine.
+  ══════════════════════════════ */
+  .hero {
+    position: relative;
+    padding: 9.5rem 6vw 5rem;
+    max-width: 1360px;
+    margin: 0 auto;
+  }
+
+  .hero-etiqueta {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gris-med);
+    margin-bottom: 2.6rem;
+    opacity: 0;
+    animation: aparece 1s ease forwards 0.1s;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 5vw;
+    align-items: end;
+  }
+
+  .marco-foto {
+    display: block;
+    position: relative;
+    aspect-ratio: 4 / 5;
+    background: var(--papel-crudo);
+    overflow: hidden;
+    text-decoration: none;
+    opacity: 0;
+    animation: aparece 1.1s ease forwards 0.25s;
+  }
+  .marco-foto img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .marco-vacio {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gris-med);
+    border: 1px dashed rgba(43,38,32,0.14);
+    margin: 1px;
+  }
+
+  .hero-texto { padding-bottom: 0.6rem; }
+
+  .hero-tag {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--verde);
+    margin-bottom: 1.4rem;
+    opacity: 0;
+    animation: aparece 1s ease forwards 0.4s;
+  }
+
+  .hero-titulo {
+    font-family: 'IM Fell English', serif;
+    font-weight: 400;
+    font-size: clamp(2.8rem, 6.2vw, 5.4rem);
+    line-height: 1.02;
+    color: var(--tinta);
+    margin-bottom: 1.7rem;
+    opacity: 0;
+    animation: aparece 1.1s ease forwards 0.5s;
+  }
+
+  .hero-frase {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+    color: var(--tinta-suave);
+    line-height: 1.6;
+    max-width: 32ch;
+    opacity: 0;
+    animation: aparece 1.1s ease forwards 0.65s;
+  }
+
+  @keyframes aparece {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 2.2rem; }
+    .marco-foto { aspect-ratio: 16 / 10; }
+  }
+
+  /* ══════════════════════════════
+     ARCHIVO — lista editorial serena, regla fina,
+     ritmo vertical amplio. Como el índice de Emergence.
+  ══════════════════════════════ */
+  .archivo {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 1rem 6vw 8rem;
+    border-top: 1px solid rgba(43,38,32,0.12);
+  }
+
+  .archivo-etiqueta {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gris-med);
+    margin: 3.2rem 0 3.6rem;
+  }
+
+  .pieza {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 4vw;
+    align-items: center;
+    padding: 3.4rem 0;
+    border-bottom: 1px solid rgba(43,38,32,0.1);
+    text-decoration: none;
+    color: inherit;
+  }
+  .pieza:nth-child(even) { grid-template-columns: 1.5fr 1fr; }
+  .pieza:nth-child(even) .pieza-imagen { order: 2; }
+
+  .pieza-imagen {
+    aspect-ratio: 3 / 2;
+    background: var(--papel-crudo);
+    border: 1px dashed rgba(43,38,32,0.12);
+    overflow: hidden;
+  }
+  .pieza-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .pieza-meta {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(74,107,74,0.45);
+    height: 1em;
+  }
+
+  @media (max-width: 780px) {
+    .pieza, .pieza:nth-child(even) {
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+    }
+    .pieza:nth-child(even) .pieza-imagen { order: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-etiqueta, .marco-foto, .hero-tag, .hero-titulo, .hero-frase {
+      animation: none !important; opacity: 1;
+    }
+  }
+
+  /* paginación del archivo */
+  .paginacion {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-top: 2.5rem;
+  }
+  .pagina-btn {
+    width: 2.2rem; height: 2.2rem;
+    border: 1px solid rgba(43,38,32,0.16);
+    background: transparent;
+    color: var(--tinta-suave);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    cursor: pointer;
+  }
+  .pagina-btn:hover { border-color: var(--verde); }
+  .pagina-btn.activo {
+    background: var(--verde);
+    border-color: var(--verde);
+    color: var(--papel);
+  }
+</style>
+</head>
+<body>
+
+<a class="marca" href="index.html" aria-label="El Espanto — inicio">
+  <svg viewBox="0 0 40 80" width="14" height="28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M20,1 L16,18 L23,34 L14,52 L18,68 L20,79"
+      fill="none" stroke="#2b2620" stroke-width="1.8"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.75"/>
+  </svg>
+  <span class="marca-texto">El Espanto</span>
+</a>
+
+<nav class="nav-territorios">
+  <a href="periferia.html">La Periferia</a>
+  <a class="activo" href="monte.html">El Monte</a>
+  <a href="cruce.html">El Cruce</a>
+  <a href="umbral.html">El Umbral</a>
+</nav>
+
+<section class="hero">
+  <span class="hero-etiqueta">Pieza del mes</span>
+  <div class="hero-grid">
+    <div class="marco-foto">
+      <span class="marco-vacio">Fotografía — pendiente</span>
+    </div>
+    <div class="hero-texto">
+      <span class="hero-tag">Territorio biocultural</span>
+      <h1 class="hero-titulo">El Monte</h1>
+      <p class="hero-frase">El territorio también respira.</p>
+    </div>
+  </div>
+</section>
+
+<section class="archivo">
+  <span class="archivo-etiqueta">Archivo</span>
+
+  <div class="piezas">
+    <!-- Cuando publiques tu primera pieza, va aquí adentro. -->
+  </div>
+</section>
+
+<div class="grano"></div>
+
+<script>
+(function () {
+  var CONTENEDOR = document.querySelector('.piezas');
+  var MAX_POR_PAGINA = 8;
+  if (!CONTENEDOR) return;
+  var items = Array.prototype.slice.call(CONTENEDOR.children);
+  var totalPaginas = Math.max(1, Math.ceil(items.length / MAX_POR_PAGINA));
+
+  function mostrarPagina(n) {
+    items.forEach(function (item, i) {
+      var pagina = Math.floor(i / MAX_POR_PAGINA) + 1;
+      item.style.display = (pagina === n) ? '' : 'none';
+    });
+    document.querySelectorAll('.pagina-btn').forEach(function (btn) {
+      btn.classList.toggle('activo', Number(btn.dataset.pagina) === n);
+    });
+  }
+
+  if (totalPaginas > 1) {
+    var nav = document.createElement('div');
+    nav.className = 'paginacion';
+    for (var p = 1; p <= totalPaginas; p++) {
+      (function (p) {
+        var btn = document.createElement('button');
+        btn.className = 'pagina-btn';
+        btn.textContent = p;
+        btn.dataset.pagina = p;
+        btn.addEventListener('click', function () { mostrarPagina(p); });
+        nav.appendChild(btn);
+      })(p);
+    }
+    CONTENEDOR.insertAdjacentElement('afterend', nav);
+  }
+
+  mostrarPagina(1);
+})();
+</script>
+
+</body>
+</html>
