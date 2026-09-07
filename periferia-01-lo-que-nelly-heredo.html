@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lo que Nelly heredó — La Periferia — El Espanto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --negro: #06050a;
+    --asfalto: #16151c;
+    --hueso: #e8ddd0;
+    --gris-med: #6b6075;
+    --gris-claro: #9d90a8;
+    --acento: #8ab830;
+    --acento-glow: #c4f050;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--negro);
+    color: var(--hueso);
+    font-family: 'Space Mono', monospace;
+    min-height: 100vh;
+  }
+
+  .grano {
+    position: fixed; inset: 0; z-index: 90; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+    opacity: 0.5; mix-blend-mode: overlay;
+  }
+
+  .marca {
+    position: fixed; top: 1.6rem; left: 2rem; z-index: 100;
+    display: flex; align-items: center; gap: 0.55rem; text-decoration: none;
+  }
+  .marca-texto {
+    font-family: 'Space Mono', monospace; font-size: 0.62rem;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--gris-claro);
+  }
+
+  .nav-territorios {
+    position: fixed; top: 1.9rem; right: 2rem; z-index: 100;
+    display: flex; gap: 1.8rem;
+  }
+  .nav-territorios a {
+    font-family: 'Space Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
+    color: var(--gris-med); transition: color 0.3s ease;
+  }
+  .nav-territorios a:hover { color: var(--hueso); }
+  .nav-territorios a.activo { color: var(--acento); }
+  @media (max-width: 720px) { .nav-territorios { display: none; } }
+
+  .pieza-header {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 8rem 1.5rem 3rem;
+    text-align: center;
+  }
+  .pieza-tag {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--acento);
+    margin-bottom: 1.2rem;
+  }
+  .pieza-titulo {
+    font-family: 'IM Fell English', serif;
+    font-weight: 400;
+    font-size: clamp(2rem, 5.4vw, 3.4rem);
+    line-height: 1.1;
+    color: var(--hueso);
+    margin-bottom: 1.1rem;
+    text-shadow: 0 0 20px rgba(138,184,48,0.25);
+  }
+
+  .pieza-firma {
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: var(--acento);
+    max-width: 760px;
+    margin: 0 auto 3rem;
+    padding: 0 1.5rem;
+  }
+
+  .cuerpo-pieza {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem 7rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+  .cuerpo-pieza p {
+    margin-bottom: 1.5rem;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+  .cuerpo-pieza figure { margin: 3rem 0; }
+  .cuerpo-pieza img { width: 100%; display: block; background: var(--asfalto); }
+  .cuerpo-pieza figcaption {
+    font-size: 0.78rem;
+    color: var(--gris-claro);
+    margin-top: 0.6rem;
+    font-style: italic;
+    line-height: 1.7;
+    text-align: justify;
+    text-justify: inter-word;
+  }
+
+  @media (max-width: 640px) {
+    .pieza-header { padding: 6.5rem 1.2rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<a class="marca" href="index.html" aria-label="El Espanto — inicio">
+  <svg viewBox="0 0 40 80" width="14" height="28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M20,1 L16,18 L23,34 L14,52 L18,68 L20,79"
+      fill="none" stroke="#e8ddd0" stroke-width="1.8"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+  </svg>
+  <span class="marca-texto">El Espanto</span>
+</a>
+
+<nav class="nav-territorios">
+  <a class="activo" href="periferia.html">La Periferia</a>
+  <a href="monte.html">El Monte</a>
+  <a href="cruce.html">El Cruce</a>
+  <a href="umbral.html">El Umbral</a>
+</nav>
+
+<header class="pieza-header">
+  <span class="pieza-tag">Ensayo fotográfico</span>
+  <h1 class="pieza-titulo">Lo que Nelly heredó: el trabajo de una mujer y el futuro del mercado popular</h1>
+</header>
+
+<p class="pieza-firma">Tecuani Mishpanti · <time datetime="2026-09-01">1 de septiembre, 2026</time></p>
+
+<div class="cuerpo-pieza">
+
+  <p>Mientras el mercado continúa a oscuras, Nelly abre su puesto de gallinas indias, gallinas rojas y chumpipollos a las cinco de la mañana en el Mercado Central de San Salvador. Ha pasado 25 de sus 51 años trabajando en el mismo lugar, dentro del Edificio 8. Su madre, Teresa Rueda Valdivia, una de las fundadoras del mercado, fue quien le heredó el puesto. Pero Nelly no recibió solo un local: recibió un oficio completo. Heredó el destace, la selección de las aves y la relación con las granjas de crianza que abastecen el mercado.</p>
+
+  <figure>
+    <img src="periferia-01-lo-que-nelly-heredo-img01.jpg" alt="">
+    <figcaption>Mantener ese conocimiento también ha significado adaptarse a nuevos desafíos: hoy debe buscar proveedores fuera de San Salvador para conservar la calidad de las aves que ofrece.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="periferia-01-lo-que-nelly-heredo-img02.jpg" alt="">
+    <figcaption>Antes de abrir, Nelly limpia el espacio de trabajo y las aves que venderá ese día. Es el primer gesto de una rutina que repite desde hace 25 años.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="periferia-01-lo-que-nelly-heredo-img03.jpg" alt="">
+    <figcaption>Acomodar el puesto es también un acto de memoria: cada elemento tiene su lugar, heredado junto con el oficio mismo de su madre.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="periferia-01-lo-que-nelly-heredo-img04.jpg" alt="">
+    <figcaption>El destace se aprende por observación y repetición, no por instrucciones escritas. Las manos de Nelly conocen el punto exacto de cada corte.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="periferia-01-lo-que-nelly-heredo-img05.jpg" alt="">
+    <figcaption>Nada se descarta sin razón. Cada parte del ave tiene un destino distinto, y Nelly lo sabe sin tener que pensarlo.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="periferia-01-lo-que-nelly-heredo-img06.jpg" alt="">
+    <figcaption>"Fue una bendición, pero también me perjudica. Los tiempos han cambiado, ya no se vende como antes y los costos son más altos", explica Nelly con seriedad.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="periferia-01-lo-que-nelly-heredo-img07.jpg" alt="">
+    <figcaption>Esos cambios no son solo personales. Mientras el comercio y la vida cotidiana se desplazan hacia las zonas renovadas del centro, el mercado recibe menos compradores. Los comerciantes enfrentan mayores costos de operación y cobros administrativos, mientras un espacio que durante siglos ha articulado el trabajo, el intercambio y la alimentación pierde protagonismo frente a nuevos modelos de consumo.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="periferia-01-lo-que-nelly-heredo-img08.jpg" alt="">
+    <figcaption>Muchas de las clientas de Nelly hacen su pedido el mismo día de la semana, año tras año — algunas la buscan desde antes de que ella tomara el puesto, cuando todavía era su madre quien despachaba. Piden por nombre, no por número de puesto.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="periferia-01-lo-que-nelly-heredo-img09.jpg" alt="">
+    <figcaption>La gallina india es ingrediente central de platillos tradicionales salvadoreños: panes con gallina, sopa de gallina, gallina en alguashte, la cena navideña. El chumpipollo, más económico que el pavo, alimenta a familias numerosas en fin de año. "Hay gente a la que le encanta venir al mercado por tradición. Siguen viniendo porque Dios nos ama", dice Nelly.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="periferia-01-lo-que-nelly-heredo-img10.jpg" alt="">
+    <figcaption>Detrás del mostrador, otro par de manos sostiene el mismo oficio — el trabajo de todo un día no lo hace una sola persona.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="periferia-01-lo-que-nelly-heredo-img11.jpg" alt="">
+    <figcaption>Cada mañana que Nelly vuelve a levantar la cortina no solo abre un negocio familiar. Mantiene vivo un conocimiento heredado y una forma de economía que ha dado sustento a generaciones de comerciantes. En una ciudad que redefine su centro, el futuro del Mercado Central también determinará qué lugar tendrán esas formas de vida en la memoria y en el porvenir de San Salvador.</figcaption>
+  </figure>
+
+</div>
+
+<div class="grano"></div>
+
+</body>
+</html>
