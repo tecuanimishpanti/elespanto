@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La fe que sobrevivió al incendio del Edificio 5 — El Umbral — El Espanto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blanco: #fdfcfa;
+    --hueso-claro: #f1ede4;
+    --tinta: #201d1a;
+    --tinta-suave: #58524a;
+    --gris-med: #a49a86;
+    --acento: #a3822f;
+    --acento-suave: #c9a24d;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--blanco);
+    color: var(--tinta);
+    font-family: 'Space Mono', monospace;
+    min-height: 100vh;
+  }
+
+  .marca {
+    position: fixed; top: 1.6rem; left: 2rem; z-index: 100;
+    display: flex; align-items: center; gap: 0.55rem; text-decoration: none;
+  }
+  .marca-texto {
+    font-family: 'Space Mono', monospace; font-size: 0.62rem;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--tinta-suave);
+  }
+
+  .nav-territorios {
+    position: fixed; top: 1.9rem; right: 2rem; z-index: 100;
+    display: flex; gap: 1.8rem;
+  }
+  .nav-territorios a {
+    font-family: 'Space Mono', monospace; font-size: 0.6rem;
+    letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
+    color: var(--gris-med); transition: color 0.4s ease;
+  }
+  .nav-territorios a:hover { color: var(--tinta); }
+  .nav-territorios a.activo { color: var(--acento); }
+  @media (max-width: 720px) { .nav-territorios { display: none; } }
+
+  .pieza-header {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 8rem 1.5rem 3rem;
+    text-align: center;
+  }
+  .pieza-tag {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--acento-suave);
+    margin-bottom: 1.2rem;
+  }
+  .pieza-titulo {
+    font-family: 'IM Fell English', serif;
+    font-weight: 400;
+    font-size: clamp(2rem, 5.4vw, 3.4rem);
+    line-height: 1.1;
+    color: var(--tinta);
+    margin-bottom: 1.1rem;
+  }
+  .pieza-subtitulo {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 1.6vw, 1.2rem);
+    color: var(--tinta-suave);
+  }
+
+  .pieza-firma {
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    color: var(--acento);
+    max-width: 760px;
+    margin: 0 auto 3rem;
+    padding: 0 1.5rem;
+  }
+
+  .cuerpo-pieza {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem 7rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    line-height: 1.9;
+  }
+  .cuerpo-pieza p { margin-bottom: 1.5rem; }
+  .cuerpo-pieza figure { margin: 3rem 0; }
+  .cuerpo-pieza img { width: 100%; display: block; background: var(--hueso-claro); }
+  .cuerpo-pieza figcaption {
+    font-size: 0.75rem; color: var(--gris-med);
+    margin-top: 0.6rem; font-style: italic;
+  }
+  .cuerpo-pieza blockquote {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--acento);
+    border-left: 2px solid var(--acento-suave);
+    padding-left: 1.4rem;
+    margin: 2.6rem 0;
+  }
+
+  @media (max-width: 640px) {
+    .pieza-header { padding: 6.5rem 1.2rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<a class="marca" href="index.html" aria-label="El Espanto — inicio">
+  <svg viewBox="0 0 40 80" width="14" height="28" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M20,1 L16,18 L23,34 L14,52 L18,68 L20,79"
+      fill="none" stroke="#201d1a" stroke-width="1.8"
+      stroke-linecap="round" stroke-linejoin="round" opacity="0.75"/>
+  </svg>
+  <span class="marca-texto">El Espanto</span>
+</a>
+
+<nav class="nav-territorios">
+  <a href="periferia.html">La Periferia</a>
+  <a href="monte.html">El Monte</a>
+  <a href="cruce.html">El Cruce</a>
+  <a class="activo" href="umbral.html">El Umbral</a>
+</nav>
+
+<header class="pieza-header">
+  <span class="pieza-tag">Ensayo fotográfico</span>
+  <h1 class="pieza-titulo">La fe que sobrevivió al incendio del Edificio 5 del Mercado Central</h1>
+  <p class="pieza-subtitulo">En un mercado centenario de San Salvador, un grupo de mujeres sostiene, generación tras generación, el voto que sus antepasadas hicieron alguna vez al Sagrado Corazón de Jesús.</p>
+</header>
+
+<p class="pieza-firma">Tecuani Mishpanti · <time datetime="2026-09-01">1 de septiembre, 2026</time></p>
+
+<div class="cuerpo-pieza">
+
+  <figure>
+    <img src="umbral-01-fe-mercado-central-img01.jpg" alt="">
+    <figcaption>Guadalupe de Girón, de 62 años, vende dulces desde un puesto temporal en el sótano del Edificio 9 — el espacio que ella y otras vendedoras desplazadas ocupan desde el incendio de 2024.</figcaption>
+  </figure>
+
+  <p>Detrás del mostrador de un puesto temporal, rodeada de vitrinas llenas de dulces, confeti y todo lo necesario para una fiesta infantil, Guadalupe de Girón atiende a una clienta con una sonrisa que desafía al sótano húmedo del Edificio 9 del Mercado Central de San Salvador. Cincuenta y dos años en el mercado son una prueba de resistencia y, aunque su territorio se ha reducido a este rincón provisional, no pierde la esperanza de volver a su antiguo local.</p>
+
+  <p>En la madrugada del 2 de agosto de 2024, el Edificio 5, donde Guadalupe pasó gran parte de su vida, fue consumido por un incendio. El fuego dañó entre 80 y 90 de los 276 puestos del edificio, según el reporte oficial del Cuerpo de Bomberos — casi un tercio de todo el pabellón. El edificio permanece cerrado, inaccesible. Ocho meses después del incendio, la Alcaldía de San Salvador Centro confirmó a medios locales que el edificio sigue asegurado, pero que el municipio espera una inspección judicial antes de poder hacer uso del seguro. No se ha anunciado fecha de reconstrucción. Para las vendedoras, la burocracia suena a desalojo definitivo.</p>
+
+  <p>Unos días después del desastre, personal de la alcaldía guió a Guadalupe y a un grupo de comerciantes por lo que quedaba del pabellón calcinado. "No quedó nada, y lo poco que había, se lo llevaron", recordó Guadalupe, con una resignación que muerde. "Tocó empezar de cero. Pero al menos la imagen del Sagrado Corazón de Jesús no se quemó."</p>
+
+  <p>La explicación oficial del Cuerpo de Bomberos de El Salvador fue que el incendio inició por un cortocircuito — una falla eléctrica, dicen las vendedoras, en un sistema que operaba con el mismo cableado antiguo desde que se construyó el mercado. La grasa de las carnicerías y la cera de las velas votivas fueron el combustible perfecto que redujo a cenizas buena parte del espacio — algo que el propio director municipal de Protección Civil confirmó en su momento: el sector afectado concentraba puestos de venta de grasas vegetales y animales, y de candelas.</p>
+
+  <p>Para las mujeres del Central, el Sagrado Corazón es el amo y señor de todos los mercados, y le atribuyen el milagro que permitió que el comercio informal floreciera en el barrio El Calvario. Según la memoria de las vendedoras de "los mercados de antes", sus antepasadas le hicieron una promesa jurada al patrón del mercado: si el santo les ayudaba a vaciar sus canastos y asegurar la venta del día, ellas le consagrarían treinta y tres días continuos de rezo.</p>
+
+  <p>Aquel pacto de supervivencia económica comenzó en la tierra, en el antiguo centro de abastos al aire libre conocido popularmente como "El Chiquero". En 1975, cuando la modernización de la época levantó los bloques de cemento del Mercado Central para ordenar las calles alrededor, el laberinto de concreto se construyó justo encima de ese suelo histórico. El mercado sepultó a "El Chiquero", convirtiéndolo en su sótano, y absorbió también otros mercados más pequeños — entre ellos La Compañía, donde comienza la propia historia familiar de Guadalupe. Por eso sus años ahí y los que lleva en el Mercado Central se cuentan como una sola cifra continua. Pero la promesa migró intacta hacia todo el Mercado Central.</p>
+
+  <p>Guadalupe recuerda su propia versión. "Nosotras llegamos hace cincuenta y dos años al mercado de La Compañía. Ahí tenía un puestecito mi mamá. Desde ahí venía la tradición", cuenta. Tenía siete u ocho años cuando empezó a asistir a los rezos — no por fe, sino por el sorbete, los tamales y los dulces que repartían al final. Las rezadoras de entonces eran estrictas: a quien no rezaba, no le daban de comer. Su madre nunca pudo pagar un día de misa —"apenas teníamos para comer", recuerda Guadalupe— así que ella y sus hermanas iban solo a pedir el refrigerio, mientras las familias con más recursos costeaban la celebración completa.</p>
+
+  <p>Ese recuerdo de carencia es lo que hoy guía su manera, más generosa, de vivir la tradición. "Yo les digo, compremos y hay que dar, porque ya pasamos por eso", explica. "Aquí viene gente que quizás lo que come en la misa será la única comida que tendrá en el día." Muchos fieles recorren varias misas el mismo día, guardando tamales en una bolsa para llevárselos a los nietos.</p>
+
+  <p>Desde entonces, la devoción se multiplicó por todo el complejo, y cada comité adoptó su propia imagen como escudo protector. Así nacieron los comités religiosos en cada edificio del Mercado Central — una estructura que, según las propias vendedoras, se repite en otros mercados del país, aunque fue aquí donde la vieron nacer. Las vendedoras se convirtieron en guardianas de una memoria abrumadoramente femenina, transmitida de madres a hijas a través de rezos que van del primero de junio al tres de julio. Rezos que se volvieron misas. Hoy, mientras el Edificio 5 sigue clausurado y su santo permanece resguardado en la cercana iglesia de El Calvario, Guadalupe y las mujeres del sótano se preparan para darle continuidad a la fiesta fundacional del mercado. El dinero escasea en el sótano del Edificio 9, pero su fe no se rompe.</p>
+
+  <p>"Había un sector de pescadores que tenía su propio corazón, y otro de especias. Nosotras teníamos otro corazón en el Edificio 5. Entraron también otros corazones. Así, a cada comité le fueron dando un Corazón de Cristo. Todos fueron donados", recuerda Guadalupe.</p>
+
+  <p>Días antes de mi conversación con Guadalupe, durante una de mis visitas al mercado, descubrí por qué la presencia del Sagrado Corazón ahí era mucho más que un símbolo religioso. Según las vendedoras, el Central dejó atrás sus días de gloria, pero sus pasillos nunca están vacíos. En un día normal de compras, cualquier pasillo te puede poner de frente con una misa.</p>
+
+  <figure>
+    <img src="umbral-01-fe-mercado-central-img02.jpg" alt="">
+    <figcaption>Una misa transcurre dentro del Edificio 6, el pabellón de carnes, bajo un dosel de tela dorada y roja, mientras una compradora alcanza un corte de carne a pocos pasos del altar.</figcaption>
+  </figure>
+
+  <p>El Edificio 6, el de las carnes, se había convertido en un templo. Las paredes eran hileras de carne de res colgada, básculas, rótulos de precios, gente comprando, llenando los pasillos, rodeando el espacio consagrado donde un grupo de fieles — la mayoría mujeres — escuchaba al padre Jorge Cartagena, de la iglesia El Calvario. Una imagen del Sagrado, sobre un altar elevado, presidía la ceremonia.</p>
+
+  <figure>
+    <img src="umbral-01-fe-mercado-central-img03.jpg" alt="">
+    <figcaption>Blanca Duarte, cuyo puesto de carne es sede de la misa, se para frente a la congregación que ayudó a organizar.</figcaption>
+  </figure>
+
+  <blockquote>
+    "No se puede entender El Calvario sin las vendedoras."
+  </blockquote>
+
+  <p>Así lo dice el padre Elder Romero, también sacerdote de la iglesia. Reconoce que la costumbre de que los mercados se asienten frente al atrio de una iglesia no es exclusiva de este barrio, pero la historia da fe del vínculo entre El Calvario y sus comerciantes: el barrio ha sido, durante siglos, el corazón comercial de San Salvador, y la iglesia siempre ha sido el canal por el que han buscado una bendición para sus ventas.</p>
+
+  <figure>
+    <img src="umbral-01-fe-mercado-central-img04.jpg" alt="">
+    <figcaption>El padre Jorge Cartagena alza el cáliz durante la consagración, enmarcado por cortes de res colgados.</figcaption>
+  </figure>
+
+  <p>Mientras se celebra la Eucaristía, la música de los puestos vecinos se apaga. El comercio sigue su curso. La economía sagrada del mercado se manifiesta. El puesto de carne que es sede de la misa le pertenece a Blanca Duarte, quien lleva cincuenta y un años en el mercado. Ella recuerda que, de niña, asistía a los rezos para pedir dulces — el mismo umbral por el que entró Guadalupe a la fe, aunque las dos mujeres, sin parentesco entre sí, no se conocían entonces.</p>
+
+  <blockquote>
+    "Yo recuerdo que hacíamos fila para eso. En la medida que uno crece, se da cuenta de que es la fe. Quizás cuando boten este mercado ya no nos van a dejar celebrar al Sagrado Corazón. Ha habido señoras en el mercado mayores de cien años que ya celebraban esto, y lo hacían en los mercados viejos — viene de generación en generación."
+  </blockquote>
+
+  <p>En una visita posterior, cerca del final de las celebraciones al Sagrado, bajé al sótano del Edificio 9. Recorrí las gradas y llegué a los primeros puestos. Cacerolas y peroles de aluminio colgados. Un puesto sin vendedora. Otro con una vendedora de edad avanzada, sentada en una silla de plástico, bostezando a la espera de clientes que no llegaban.</p>
+
+  <figure>
+    <img src="umbral-01-fe-mercado-central-img05.jpg" alt="">
+    <figcaption>El Cristo Negro, resguardado en el sótano del mercado, se venera una vez al año, el 15 de enero — más como una marca de origen que como objeto de devoción constante.</figcaption>
+  </figure>
+
+  <p>Un grupo de mujeres cubre el altar del Cristo Negro instalado en el subsuelo del Central. La imagen nació de la devoción de las vendedoras fundadoras del mercado. Se le celebra cada 15 de enero, aunque hoy funciona más como una marca de origen que como un objeto de devoción activa. La figura es una réplica de la que está en Guatemala: sin adornos, austera, oscura. Verla me lleva, inevitablemente —por mi formación en historia de las religiones— a pensar en Tezcatlipoca, el Espejo Humeante, la deidad mesoamericana que pone a prueba a los hombres y luego se retira, dejando solo su señal. La asociación no pretende explicar el origen del Cristo Negro, pero sí ilumina un contraste: mientras la devoción al Sagrado Corazón encontró nuevas generaciones de comerciantes que la sostuvieran, la devoción al Cristo Negro parece haberse quedado sin herederos.</p>
+
+  <figure>
+    <img src="umbral-01-fe-mercado-central-img06.jpg" alt="">
+    <figcaption>Vendedoras cubren el altar del Cristo Negro en el sótano del mercado, para dar paso a la celebración del Sagrado Corazón.</figcaption>
+  </figure>
+
+  <p>El abandono no es solo percepción. "Este lugar pasa solo. Si usted ve las caras de la gente, nota la desesperanza. Hay gente que hasta se queda dormida en sus puestos, porque no llegan clientes", dice Guadalupe. Cuando el pabellón cerró, no todas las vendedoras terminaron en el mismo sótano: algunas se fueron a locales afuera, a otros edificios, con familiares. Los clientes de siempre dejaron de buscarlas. "La gente llegaba a preguntar por la señora fulana y ya no estaba. Dejaron de buscarnos porque no sabían que estábamos aquí", cuenta. Algunas, dice, sobreviven porque lograron conservar a algunos de esos clientes de años.</p>
+
+  <p>"Los puestos que ve allá estaban antes en la Plaza San Vicente — los trasladaron para acá. En los años del Mundial, aquí no cabía ni un alma. Mírelo ahora: muerto", agrega Guadalupe. La propia Alcaldía confirmó, en los días posteriores al incendio, que la Plaza San Vicente de Paul fue una de las opciones de reubicación —propuesta por las mismas vendedoras—, junto con el área de parqueo entre los Edificios 2 y 3, y el sótano donde trabajan hoy.</p>
+
+  <figure>
+    <img src="umbral-01-fe-mercado-central-img07.jpg" alt="">
+    <figcaption>Un primer plano de las manos de una vendedora mientras prepara una pequeña ofrenda para el altar.</figcaption>
+  </figure>
+
+  <p>Trabajadores del mercado interrumpen para lavar los pisos de la zona. Las mujeres descansan. Comienzan los preparativos para el día siguiente, el cierre de las celebraciones: los tamales, el sorbete, las bebidas.</p>
+
+  <p>La iglesia El Calvario ha prometido llevar una imagen del Sagrado Corazón de Jesús para el día siguiente, 3 de julio. Su propia imagen sigue en la iglesia, en restauración, así que la parroquia prestará otra para la ocasión. Con una imagen prestada, las mujeres ofrecerán la última misa.</p>
+
+  <figure>
+    <img src="umbral-01-fe-mercado-central-img08.jpg" alt="">
+    <figcaption>Guadalupe (al centro) junto a otras vendedoras durante un momento de oración, con una canasta de ofrenda sobre la mesa a su lado.</figcaption>
+  </figure>
+
+  <p>Regreso un día después; la Eucaristía está pactada para el mediodía. Llego temprano para conversar con Guadalupe y las vendedoras del Edificio 5, que esperan al párroco de El Calvario, quien en ese momento oficia otra misa en el mismo Edificio 9, en el piso de arriba del Cristo Negro. Los fieles ya llenan las sillas de plástico. Un ministerio de alabanza pone la música; pop cristiano marca el ánimo. No alcanzó el espacio frente al altar, así que la gente se acomoda más atrás, pero el sonido llena el sótano mientras los compradores los miran con curiosidad y sorpresa. El sacerdote llega corriendo.</p>
+
+  <p>Deja un maletín negro sobre la mesa del altar. Lo abre y saca una Biblia, el misal y el cáliz: los elementos de la comunión, que se transformarán en cuanto el sacerdote los bendiga.</p>
+
+  <p>La misa es solemne. En su homilía, el padre Romero habla con una voz cargada de nostalgia y memoria. "Este es un momento para recordar nuestros orígenes, para sentirnos orgullosos de nuestra fe — incluso aquí, en medio de la venta, la compra, el murmullo de estos pasillos", dice. Como en cada celebración que presencié dentro del mercado, la mayoría de los asistentes son mujeres — las mismas que sostienen sus casas y su vida diaria, y que hoy también cargan la esperanza de ver reconstruido el Edificio 5. "Por eso estamos aquí — porque el Sagrado Corazón de Jesús nos ha respondido antes, y confiamos en que lo hará de nuevo, para que las comerciantes puedan volver a sus puestos, para que por fin obtengan la respuesta que han estado esperando", dice el padre Romero.</p>
+
+  <figure>
+    <img src="umbral-01-fe-mercado-central-img09.jpg" alt="">
+    <figcaption>Pétalos de rosa marcan el pasillo entre las filas de fieles, durante uno de los treinta y tres días de rezo.</figcaption>
+  </figure>
+
+  <p>Antes había más recursos para sostener la fiesta con otro esplendor. "Teníamos un altarero que se llamaba Santiago. Ya murió. Cobraba quinientos colones en aquel tiempo, y en esa época había dinero para eso. Ya no", dice Guadalupe. Los altares de antes eran obra de artesanos: figuras de madera, un arca de Noé en miniatura, orquestas de cumbia que tocaban después de las misas — su propia madre, recuerda, hacía altares todavía más bellos que los de ella. Hoy el altar del sótano es, en sus propias palabras, "sencillísimo".</p>
+
+  <p>"Tengo sesenta y dos años — imagínese desde cuándo hacemos esto", dice Guadalupe. Antes solo se rezaba el Rosario; la misa llegó después, cuando la parroquia de El Calvario empezó a apoyar la celebración con sacerdotes fijos. Antes de eso, los rezos se acompañaban con música de cuerdas, con viejitos que llegaban con sus guitarras.</p>
+
+  <p>No todas las guardianas de la tradición siguen presentes. "Falta Alicia, y la niña Vicenta también. Ya están grandes, algunas enfermas, otras recién operadas, así que dejaron de venir", dice Guadalupe. Su hermana es, junto con ella, de las más jóvenes del grupo; otras mujeres se han ido sumando con los años, y muchas también se congregan en la iglesia El Calvario.</p>
+
+  <p>La tradición se sostiene, en parte, desde la distancia. "Una que ha trabajado en el mercado quiere algo mejor para sus hijos — no quiere que se queden aquí. Pero nuestros hijos siempre colaboran: una de mis hijas pagó una misa, otra dio dinero para los refrigerios", dice Guadalupe. Entre quienes mandan ofrendas para la celebración hay familiares que ya salieron del mercado —una prima que ahora es doctora— y sobrinos que viven en Europa y preguntan cada año qué hace falta. La gente se va, dice Guadalupe, pero sigue presente de alguna forma.</p>
+
+  <p>Para Guadalupe, lo que está en juego va más allá de un solo edificio. "La Semana Santa se celebra en todo el mundo; las fiestas agostinas son de la Alcaldía. Pero si cierran el mercado, el Sagrado Corazón pierde su templo. Él es el patrón de todos los mercados — lo va a encontrar donde vaya. Si el mercado desaparece, ¿qué hacemos con todas esas imágenes? Por eso luchamos, por eso seguimos rezando, porque las cosas están cambiando, todo se está modernizando, y la gente ya no quiere venir al mercado", pregunta y reflexiona.</p>
+
+  <figure>
+    <img src="umbral-01-fe-mercado-central-img11.jpg" alt="">
+    <figcaption>Una fiel recibe la comunión durante la misa que marca el cierre de la celebración.</figcaption>
+  </figure>
+
+  <p>Guadalupe y las vendedoras han reabierto su antiguo pacto con el Sagrado Corazón de Jesús. Su fe navega sobre la incertidumbre institucional sembrada por la Alcaldía — un silencio, y una petición de recuperar su antiguo espacio, que todavía no ha sido respondida. Guadalupe concluye: "Nosotras venimos de tradición en tradición. Nuestra imagen del Sagrado Corazón está en la iglesia El Calvario. La hemos dejado ahí hasta tener nuestro edificio de vuelta. Dios quiera que sea pronto, porque esto nos ha unido — todas estamos pidiendo regresar. Las misas siempre han sido muy solemnes, pero hoy es cuando más hemos rezado. A dos años del incendio seguimos sin respuesta. A una sola voz, todas pedimos volver al Edificio 5."</p>
+
+  <figure>
+    <img src="umbral-01-fe-mercado-central-img10.jpg" alt="">
+    <figcaption>Mujeres se saludan en círculo cerca del final de la misa de cierre — un momento de calidez dentro de una devoción cada vez más marcada por la incertidumbre.</figcaption>
+  </figure>
+
+  <p>La Eucaristía ha terminado. El reloj ya corre hacia la fiesta del próximo año. Las mujeres empiezan a despejar el área, a devolverla a como estaba. El Cristo Negro espera recuperar su altar. Cada quien vuelve a su puesto. Guadalupe también se va, con la esperanza renovada de que las misas del próximo año al Sagrado Corazón la encuentren de vuelta en el Edificio 5.</p>
+
+  <figure>
+    <img src="umbral-01-fe-mercado-central-img12.jpg" alt="">
+    <figcaption>Una vendedora recoge las sillas mientras termina la celebración — el mercado, una vez más, vuelve a su ritmo ordinario.</figcaption>
+  </figure>
+
+</div>
+
+</body>
+</html>
